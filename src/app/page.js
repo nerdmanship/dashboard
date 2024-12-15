@@ -1,10 +1,10 @@
 'use client';
-
-import Link from 'next/link';
 import { useAuth } from '@/context/AuthContext';
+import MainLayout from '@/components/Layout/MainLayout';
+import LoginView from '@/components/Auth/LoginView';
 
 export default function Home() {
-  const { user, signInWithGoogle, logout, loading } = useAuth();
+  const { user, loading } = useAuth();
 
   if (loading) {
     return (
@@ -15,55 +15,37 @@ export default function Home() {
   }
 
   if (!user) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="max-w-md w-full space-y-8 p-6">
-          <div className="text-center">
-            <h1 className="text-3xl font-bold text-gray-900 mb-8">Personal Finance Dashboard</h1>
-            <button
-              onClick={signInWithGoogle}
-              className="bg-white px-6 py-3 border border-gray-300 rounded-lg shadow-sm text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 font-medium"
-            >
-              Sign in with Google
-            </button>
-          </div>
-        </div>
-      </div>
-    );
+    return <LoginView />;
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md mx-auto">
-        <div className="text-center">
-          <div className="flex justify-between items-center mb-8">
-            <h1 className="text-3xl font-bold text-gray-900">Personal Finance Dashboard</h1>
-            <button
-              onClick={logout}
-              className="text-sm text-gray-600 hover:text-gray-900 font-medium"
-            >
-              Sign Out
-            </button>
+    <MainLayout>
+      <div className="space-y-6">
+        <h1 className="text-3xl font-bold">Overview</h1>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="bg-white p-6 rounded-lg shadow">
+            <h2 className="text-xl font-semibold mb-4">Monthly Spending</h2>
+            <div className="h-64 bg-gray-100 rounded flex items-center justify-center">
+              Chart Placeholder
+            </div>
           </div>
-          <div className="space-y-4">
-            <Link 
-              href="/transactions"
-              className="block w-full bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200"
-            >
-              <h2 className="text-xl font-semibold text-gray-900">View Transactions</h2>
-              <p className="mt-2 text-gray-700">Browse and manage your financial transactions</p>
-            </Link>
-            
-            <Link 
-              href="/add"
-              className="block w-full bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200"
-            >
-              <h2 className="text-xl font-semibold text-gray-900">Add Transaction</h2>
-              <p className="mt-2 text-gray-700">Record a new financial transaction</p>
-            </Link>
+          
+          <div className="bg-white p-6 rounded-lg shadow">
+            <h2 className="text-xl font-semibold mb-4">Recent Transactions</h2>
+            <div className="h-64 bg-gray-100 rounded flex items-center justify-center">
+              Transactions List Placeholder
+            </div>
+          </div>
+          
+          <div className="bg-white p-6 rounded-lg shadow">
+            <h2 className="text-xl font-semibold mb-4">Budget Overview</h2>
+            <div className="h-64 bg-gray-100 rounded flex items-center justify-center">
+              Budget Status Placeholder
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </MainLayout>
   );
 }
