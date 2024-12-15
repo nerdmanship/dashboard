@@ -1,21 +1,12 @@
-import { Inter } from 'next/font/google';
-import { AuthProvider } from '@/context/AuthContext';
-import './globals.css';
-
-const inter = Inter({ subsets: ['latin'] });
-
-export const metadata = {
-  title: 'Personal Finance Dashboard',
-  description: 'Track your personal finances',
-};
+import { AuthContextProvider } from '@/context/AuthContext';
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <AuthProvider>
+      <body>
+        <AuthContextProvider>
           {children}
-        </AuthProvider>
+        </AuthContextProvider>
       </body>
     </html>
   );
