@@ -4,9 +4,11 @@ import { useState } from 'react';
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import { useRouter } from 'next/navigation';
+import { useAuth } from '@/context/AuthContext';
 
 export default function AddTransaction() {
   const router = useRouter();
+  const { user } = useAuth();
   const [formData, setFormData] = useState({
     date: new Date().toISOString().split('T')[0],
     category: '',
@@ -22,7 +24,9 @@ export default function AddTransaction() {
       await addDoc(collection(db, 'transactions'), {
         ...formData,
         amount: parseFloat(formData.amount),
-        date: new Date(formData.date).toISOString()
+        date: new Date(formData.date).toISOString(),
+        userId: user.uid,
+        createdAt: new Date().toISOString()
       });
       router.push('/transactions');
     } catch (error) {
@@ -37,6 +41,11 @@ export default function AddTransaction() {
       [name]: value
     }));
   };
+
+  if (!user) {
+    router.push('/');
+    return null;
+  }
 
   return (
     <div className="p-6 max-w-lg mx-auto">
