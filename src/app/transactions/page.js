@@ -5,12 +5,14 @@ import { collection, getDocs, deleteDoc, doc, query, where } from 'firebase/fire
 import { db } from '@/lib/firebase';
 import { useAuth } from '@/context/AuthContext';
 import { useRouter } from 'next/navigation';
+import { useAsyncAction } from '@/hooks/useAsyncAction';
 
 export default function Transactions() {
   const [transactions, setTransactions] = useState([]);
   const [loading, setLoading] = useState(true);
   const { user } = useAuth();
   const router = useRouter();
+  const { isLoading, executeAsync } = useAsyncAction();
 
   useEffect(() => {
     const fetchTransactions = async () => {
@@ -38,9 +40,17 @@ export default function Transactions() {
   }, [user]);
 
   const handleDelete = async (id) => {
-    try {
+    if (!window.confirm('Are you sure you want to delete this transaction?')) {
+      return;
+    }
+
+    const deleteAction = async () => {
       await deleteDoc(doc(db, 'transactions', id));
       setTransactions(transactions.filter(transaction => transaction.id !== id));
+    };
+
+    try {
+      await executeAsync(`delete-${id}`, deleteAction);
     } catch (error) {
       console.error('Error deleting transaction:', error);
     }
@@ -95,9 +105,10 @@ export default function Transactions() {
                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                   <button
                     onClick={() => handleDelete(transaction.id)}
-                    className="text-red-600 hover:text-red-900"
+                    disabled={isLoading[`delete-${transaction.id}`]}
+                    className="text-red-600 hover:text-red-900 disabled:text-red-300 disabled:cursor-not-allowed"
                   >
-                    Delete
+                    {isLoading[`delete-${transaction.id}`] ? 'Deleting...' : 'Delete'}
                   </button>
                 </td>
               </tr>
