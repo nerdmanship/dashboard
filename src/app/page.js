@@ -9,7 +9,7 @@ export default function Home() {
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-xl">Loading...</div>
+        <div className="text-xl text-gray-900">Loading...</div>
       </div>
     );
   }
@@ -22,7 +22,7 @@ export default function Home() {
             <h1 className="text-3xl font-bold text-gray-900 mb-8">Personal Finance Dashboard</h1>
             <button
               onClick={signInWithGoogle}
-              className="bg-white px-6 py-3 border border-gray-300 rounded-lg shadow-sm text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              className="bg-white px-6 py-3 border border-gray-300 rounded-lg shadow-sm text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 font-medium"
             >
               Sign in with Google
             </button>
@@ -40,7 +40,7 @@ export default function Home() {
             <h1 className="text-3xl font-bold text-gray-900">Personal Finance Dashboard</h1>
             <button
               onClick={logout}
-              className="text-sm text-gray-500 hover:text-gray-700"
+              className="text-sm text-gray-600 hover:text-gray-900 font-medium"
             >
               Sign Out
             </button>
@@ -51,7 +51,7 @@ export default function Home() {
               className="block w-full bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200"
             >
               <h2 className="text-xl font-semibold text-gray-900">View Transactions</h2>
-              <p className="mt-2 text-gray-600">Browse and manage your financial transactions</p>
+              <p className="mt-2 text-gray-700">Browse and manage your financial transactions</p>
             </Link>
             
             <Link 
@@ -59,7 +59,7 @@ export default function Home() {
               className="block w-full bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200"
             >
               <h2 className="text-xl font-semibold text-gray-900">Add Transaction</h2>
-              <p className="mt-2 text-gray-600">Record a new financial transaction</p>
+              <p className="mt-2 text-gray-700">Record a new financial transaction</p>
             </Link>
           </div>
         </div>

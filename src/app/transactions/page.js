@@ -53,49 +53,49 @@ export default function Transactions() {
 
   if (loading) return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-      <div className="text-xl">Loading...</div>
+      <div className="text-xl text-gray-900">Loading...</div>
     </div>
   );
 
   return (
     <div className="p-6">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">Transactions</h1>
+        <h1 className="text-2xl font-bold text-gray-900">Transactions</h1>
         <button
           onClick={() => router.push('/add')}
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 font-medium"
         >
           Add Transaction
         </button>
       </div>
-      <div className="overflow-x-auto">
-        <table className="min-w-full bg-white border border-gray-300">
+      <div className="overflow-x-auto bg-white rounded-lg shadow">
+        <table className="min-w-full">
           <thead>
-            <tr>
-              <th className="px-6 py-3 border-b">Date</th>
-              <th className="px-6 py-3 border-b">Category</th>
-              <th className="px-6 py-3 border-b">Type</th>
-              <th className="px-6 py-3 border-b">Amount</th>
-              <th className="px-6 py-3 border-b">Currency</th>
-              <th className="px-6 py-3 border-b">Notes</th>
-              <th className="px-6 py-3 border-b">Actions</th>
+            <tr className="bg-gray-50">
+              <th className="px-6 py-3 border-b border-gray-200 text-left text-xs leading-4 font-medium text-gray-700 uppercase tracking-wider">Date</th>
+              <th className="px-6 py-3 border-b border-gray-200 text-left text-xs leading-4 font-medium text-gray-700 uppercase tracking-wider">Category</th>
+              <th className="px-6 py-3 border-b border-gray-200 text-left text-xs leading-4 font-medium text-gray-700 uppercase tracking-wider">Type</th>
+              <th className="px-6 py-3 border-b border-gray-200 text-left text-xs leading-4 font-medium text-gray-700 uppercase tracking-wider">Amount</th>
+              <th className="px-6 py-3 border-b border-gray-200 text-left text-xs leading-4 font-medium text-gray-700 uppercase tracking-wider">Currency</th>
+              <th className="px-6 py-3 border-b border-gray-200 text-left text-xs leading-4 font-medium text-gray-700 uppercase tracking-wider">Notes</th>
+              <th className="px-6 py-3 border-b border-gray-200"></th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="bg-white divide-y divide-gray-200">
             {transactions.map((transaction) => (
-              <tr key={transaction.id}>
-                <td className="px-6 py-4 border-b">
+              <tr key={transaction.id} className="hover:bg-gray-50">
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                   {new Date(transaction.date).toLocaleDateString()}
                 </td>
-                <td className="px-6 py-4 border-b">{transaction.category}</td>
-                <td className="px-6 py-4 border-b">{transaction.type}</td>
-                <td className="px-6 py-4 border-b">{transaction.amount}</td>
-                <td className="px-6 py-4 border-b">{transaction.currency}</td>
-                <td className="px-6 py-4 border-b">{transaction.notes}</td>
-                <td className="px-6 py-4 border-b">
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{transaction.category}</td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{transaction.type}</td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{transaction.amount}</td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{transaction.currency}</td>
+                <td className="px-6 py-4 text-sm text-gray-900">{transaction.notes}</td>
+                <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                   <button
                     onClick={() => handleDelete(transaction.id)}
-                    className="text-red-600 hover:text-red-800"
+                    className="text-red-600 hover:text-red-900"
                   >
                     Delete
                   </button>

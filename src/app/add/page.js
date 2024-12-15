@@ -49,96 +49,98 @@ export default function AddTransaction() {
 
   return (
     <div className="p-6 max-w-lg mx-auto">
-      <h1 className="text-2xl font-bold mb-6">Add Transaction</h1>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label className="block mb-2">Date</label>
-          <input
-            type="date"
-            name="date"
-            value={formData.date}
-            onChange={handleChange}
-            className="w-full p-2 border rounded"
-            required
-          />
-        </div>
+      <h1 className="text-2xl font-bold mb-6 text-gray-900">Add Transaction</h1>
+      <div className="bg-white rounded-lg shadow p-6">
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="block mb-2 text-sm font-medium text-gray-900">Date</label>
+            <input
+              type="date"
+              name="date"
+              value={formData.date}
+              onChange={handleChange}
+              className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900"
+              required
+            />
+          </div>
 
-        <div>
-          <label className="block mb-2">Category</label>
-          <select
-            name="category"
-            value={formData.category}
-            onChange={handleChange}
-            className="w-full p-2 border rounded"
-            required
+          <div>
+            <label className="block mb-2 text-sm font-medium text-gray-900">Category</label>
+            <select
+              name="category"
+              value={formData.category}
+              onChange={handleChange}
+              className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900"
+              required
+            >
+              <option value="">Select category</option>
+              <option value="Income">Income</option>
+              <option value="Expense">Expense</option>
+              <option value="Savings">Savings</option>
+              <option value="Debt">Debt</option>
+            </select>
+          </div>
+
+          <div>
+            <label className="block mb-2 text-sm font-medium text-gray-900">Type</label>
+            <input
+              type="text"
+              name="type"
+              value={formData.type}
+              onChange={handleChange}
+              placeholder="e.g., Salary, Rent, RSU"
+              className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block mb-2 text-sm font-medium text-gray-900">Amount</label>
+            <input
+              type="number"
+              name="amount"
+              value={formData.amount}
+              onChange={handleChange}
+              step="0.01"
+              className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block mb-2 text-sm font-medium text-gray-900">Currency</label>
+            <select
+              name="currency"
+              value={formData.currency}
+              onChange={handleChange}
+              className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900"
+              required
+            >
+              <option value="USD">USD</option>
+              <option value="SEK">SEK</option>
+              <option value="EUR">EUR</option>
+            </select>
+          </div>
+
+          <div>
+            <label className="block mb-2 text-sm font-medium text-gray-900">Notes</label>
+            <textarea
+              name="notes"
+              value={formData.notes}
+              onChange={handleChange}
+              className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900"
+              rows="3"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
           >
-            <option value="">Select category</option>
-            <option value="Income">Income</option>
-            <option value="Expense">Expense</option>
-            <option value="Savings">Savings</option>
-            <option value="Debt">Debt</option>
-          </select>
-        </div>
-
-        <div>
-          <label className="block mb-2">Type</label>
-          <input
-            type="text"
-            name="type"
-            value={formData.type}
-            onChange={handleChange}
-            placeholder="e.g., Salary, Rent, RSU"
-            className="w-full p-2 border rounded"
-            required
-          />
-        </div>
-
-        <div>
-          <label className="block mb-2">Amount</label>
-          <input
-            type="number"
-            name="amount"
-            value={formData.amount}
-            onChange={handleChange}
-            step="0.01"
-            className="w-full p-2 border rounded"
-            required
-          />
-        </div>
-
-        <div>
-          <label className="block mb-2">Currency</label>
-          <select
-            name="currency"
-            value={formData.currency}
-            onChange={handleChange}
-            className="w-full p-2 border rounded"
-            required
-          >
-            <option value="USD">USD</option>
-            <option value="SEK">SEK</option>
-            <option value="EUR">EUR</option>
-          </select>
-        </div>
-
-        <div>
-          <label className="block mb-2">Notes</label>
-          <textarea
-            name="notes"
-            value={formData.notes}
-            onChange={handleChange}
-            className="w-full p-2 border rounded"
-            rows="3"
-          />
-        </div>
-
-        <button
-          type="submit"
-          className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
-        >
-          Add Transaction
-        </button>
-      </form>
+            Add Transaction
+          </button>
+        </form>
+      </div>
     </div>
   );
 } 
