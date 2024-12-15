@@ -9,6 +9,7 @@ import { useAuth } from '@/context/AuthContext';
 export default function AddTransaction() {
   const router = useRouter();
   const { user } = useAuth();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     date: new Date().toISOString().split('T')[0],
     category: '',
@@ -20,6 +21,9 @@ export default function AddTransaction() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (isSubmitting) return; // Prevent multiple submissions
+
+    setIsSubmitting(true);
     try {
       await addDoc(collection(db, 'transactions'), {
         ...formData,
@@ -31,6 +35,7 @@ export default function AddTransaction() {
       router.push('/transactions');
     } catch (error) {
       console.error('Error adding transaction:', error);
+      setIsSubmitting(false); // Reset submit state on error
     }
   };
 
@@ -61,6 +66,7 @@ export default function AddTransaction() {
               onChange={handleChange}
               className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900"
               required
+              disabled={isSubmitting}
             />
           </div>
 
@@ -70,8 +76,9 @@ export default function AddTransaction() {
               name="category"
               value={formData.category}
               onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900"
+              className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 disabled:bg-gray-50 disabled:text-gray-500"
               required
+              disabled={isSubmitting}
             >
               <option value="">Select category</option>
               <option value="Income">Income</option>
@@ -91,6 +98,7 @@ export default function AddTransaction() {
               placeholder="e.g., Salary, Rent, RSU"
               className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900"
               required
+              disabled={isSubmitting}
             />
           </div>
 
@@ -104,6 +112,7 @@ export default function AddTransaction() {
               step="0.01"
               className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900"
               required
+              disabled={isSubmitting}
             />
           </div>
 
@@ -113,8 +122,9 @@ export default function AddTransaction() {
               name="currency"
               value={formData.currency}
               onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900"
+              className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 disabled:bg-gray-50 disabled:text-gray-500"
               required
+              disabled={isSubmitting}
             >
               <option value="USD">USD</option>
               <option value="SEK">SEK</option>
@@ -130,14 +140,16 @@ export default function AddTransaction() {
               onChange={handleChange}
               className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900"
               rows="3"
+              disabled={isSubmitting}
             />
           </div>
 
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            disabled={isSubmitting}
+            className="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:bg-blue-400 disabled:cursor-not-allowed transition-colors duration-200"
           >
-            Add Transaction
+            {isSubmitting ? 'Adding...' : 'Add Transaction'}
           </button>
         </form>
       </div>
