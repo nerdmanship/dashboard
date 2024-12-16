@@ -4,10 +4,14 @@ import { useState } from 'react';
 import MainLayout from '@/components/Layout/MainLayout';
 import TransactionModal from '@/components/Transactions/TransactionModal';
 import TransactionsList from '@/components/Transactions/TransactionsList';
+import { addDoc, collection } from 'firebase/firestore';
+import { db } from '@/lib/firebase';
+import { useAuth } from '@/context/AuthContext';
 
 export default function Transactions() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [optimisticTransaction, setOptimisticTransaction] = useState(null);
+  const { user } = useAuth();
 
   const handleAddTransaction = async (transactionData) => {
     // Create optimistic transaction
@@ -21,12 +25,19 @@ export default function Transactions() {
     setIsModalOpen(false);
 
     try {
-      // Actual transaction addition logic here
-      // If successful, optimisticTransaction will be replaced with real data
-      // If failed, we'll need to remove the optimistic transaction
-    } catch (error) {
+      // Add the actual transaction to Firebase
+      await addDoc(collection(db, 'transactions'), {
+        ...transactionData,
+        userId: user.uid,
+        createdAt: new Date().toISOString()
+      });
+      
+      // Clear optimistic transaction after success
       setOptimisticTransaction(null);
-      // Show error notification
+    } catch (error) {
+      console.error('Error adding transaction:', error);
+      setOptimisticTransaction(null);
+      // You might want to add error handling UI here
     }
   };
 
