@@ -30,9 +30,9 @@ export default function TransactionModal({ onClose, onSubmit }) {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg p-6 w-full max-w-md">
+      <div className="bg-white rounded-lg p-4 w-full max-w-md">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-bold">Add Transaction</h2>
+          <h2 className="text-lg text-neutral-900 font-bold">New transaction</h2>
           <button
             onClick={onClose}
             className="text-gray-500 hover:text-gray-700"
@@ -43,36 +43,36 @@ export default function TransactionModal({ onClose, onSubmit }) {
         
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700">Date</label>
+            <label className="block text-xs font-medium text-neutral-500">Date</label>
             <input
               type="date"
               name="date"
               value={formData.date}
               onChange={handleChange}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-xs text-neutral-900"
               required
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">Category</label>
+            <label className="block text-xs font-medium text-neutral-500">Category</label>
             <input
               type="text"
               name="category"
               value={formData.category}
               onChange={handleChange}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-xs text-neutral-900"
               required
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">Type</label>
+            <label className="block text-xs font-medium text-neutral-500">Type</label>
             <select
               name="type"
               value={formData.type}
               onChange={handleChange}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-xs text-neutral-900"
             >
               <option value="expense">Expense</option>
               <option value="income">Income</option>
@@ -81,25 +81,25 @@ export default function TransactionModal({ onClose, onSubmit }) {
 
           <div className="flex gap-4">
             <div className="flex-1">
-              <label className="block text-sm font-medium text-gray-700">Amount</label>
+              <label className="block text-xs font-medium text-neutral-500">Amount</label>
               <input
                 type="number"
                 name="amount"
                 value={formData.amount}
                 onChange={handleChange}
                 step="0.01"
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-xs text-neutral-900"
                 required
               />
             </div>
 
             <div className="w-32">
-              <label className="block text-sm font-medium text-gray-700">Currency</label>
+              <label className="block text-xs font-medium text-neutral-500">Currency</label>
               <select
                 name="currency"
                 value={formData.currency}
                 onChange={handleChange}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-xs text-neutral-900"
               >
                 <option value="SEK">SEK</option>
                 <option value="USD">USD</option>
@@ -109,13 +109,13 @@ export default function TransactionModal({ onClose, onSubmit }) {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">Notes</label>
+            <label className="block text-xs font-medium text-neutral-500">Notes</label>
             <textarea
               name="notes"
               value={formData.notes}
               onChange={handleChange}
               rows="3"
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 text-xs text-neutral-900"
             />
           </div>
 
@@ -123,15 +123,15 @@ export default function TransactionModal({ onClose, onSubmit }) {
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 text-gray-600 hover:text-gray-800"
+              className="px-4 py-2 text-xs text-neutral-900 hover:text-neutral-700"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+              className="px-4 py-2 bg-neutral-900 text-xs text-white rounded-lg hover:bg-neutral-600"
             >
-              Add Transaction
+              Add
             </button>
           </div>
         </form>

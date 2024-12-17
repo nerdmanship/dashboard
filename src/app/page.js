@@ -20,28 +20,29 @@ export default function Home() {
 
   return (
     <MainLayout>
-      <div className="space-y-6">
-        <h1 className="text-3xl font-bold">Overview</h1>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className="bg-white p-6 rounded-lg shadow">
-            <h2 className="text-xl font-semibold mb-4">Monthly Spending</h2>
-            <div className="h-64 bg-gray-100 rounded flex items-center justify-center">
-              Chart Placeholder
+      <div className="space-y-6 p-4 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full text-neutral-400">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-full">
+            <h2 className="text-md font-semibold mb-4">Networth placeholder</h2>
+            <div className="h-64 bg-gray-100 rounded flex items-center justify-center w-full">
             </div>
           </div>
           
-          <div className="bg-white p-6 rounded-lg shadow">
-            <h2 className="text-xl font-semibold mb-4">Recent Transactions</h2>
-            <div className="h-64 bg-gray-100 rounded flex items-center justify-center">
-              Transactions List Placeholder
+          <div className="bg-white p-6 rounded-lg shadow-lg w-full">
+            <h2 className="text-md font-semibold mb-4">Portfolio placeholder</h2>
+            <div className="h-64 bg-gray-100 rounded flex items-center justify-center w-full">
+            </div>
+          </div>
+
+          <div className="bg-white p-6 rounded-lg shadow-lg w-full">
+            <h2 className="text-md font-semibold mb-4">Cashflow placeholder</h2>
+            <div className="h-64 bg-gray-100 rounded flex items-center justify-center w-full">
             </div>
           </div>
           
-          <div className="bg-white p-6 rounded-lg shadow">
-            <h2 className="text-xl font-semibold mb-4">Budget Overview</h2>
-            <div className="h-64 bg-gray-100 rounded flex items-center justify-center">
-              Budget Status Placeholder
+          <div className="bg-white p-6 rounded-lg shadow-lg w-full">
+            <h2 className="text-md font-semibold mb-4">Budget placeholder</h2>
+            <div className="h-64 bg-gray-100 rounded flex items-center justify-center w-full">
             </div>
           </div>
         </div>
